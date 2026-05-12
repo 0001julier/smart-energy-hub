@@ -28,6 +28,7 @@ function AdminPage() {
     else if (session.role !== "admin") navigate({ to: "/dashboard" });
   }, [session, navigate]);
 
+  const summaries = useMemo(() => getAllUserSummaries(), []);
   if (!session || session.role !== "admin") return null;
 
   const summaries = useMemo(() => getAllUserSummaries(), []);

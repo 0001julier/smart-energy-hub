@@ -30,20 +30,16 @@ function Dashboard() {
 
   useEffect(() => {
     if (session === null) navigate({ to: "/login" });
+    else if (session.role === "admin") navigate({ to: "/admin" });
   }, [session, navigate]);
 
-  if (!session) return null;
-  if (session.role === "admin") {
-    // admins also can view their own dashboard? redirect to admin
-    navigate({ to: "/admin" });
-    return null;
-  }
-
-  const userId = session.userId;
+  const userId = session?.userId ?? "u1";
   const summary = useMemo(() => getUserSummary(userId), [userId]);
   const daily = useMemo(() => getDailyConsumption(userId, 90), [userId]);
   const hourly = useMemo(() => getHourlyForecast(userId), [userId]);
   const notifications = useMemo(() => getNotifications(userId), [userId]);
+
+  if (!session || session.role === "admin") return null;
 
   const week = daily.slice(-7);
   const month = daily.slice(-30);
