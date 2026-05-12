@@ -31,7 +31,6 @@ function AdminPage() {
   const summaries = useMemo(() => getAllUserSummaries(), []);
   if (!session || session.role !== "admin") return null;
 
-  const summaries = useMemo(() => getAllUserSummaries(), []);
   const totalKwh = summaries.reduce((a, s) => a + s.monthKwh, 0);
   const totalCost = summaries.reduce((a, s) => a + s.monthCost, 0);
   const totalSavings = summaries.reduce((a, s) => a + s.savings, 0);
