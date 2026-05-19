@@ -22,7 +22,7 @@ export function ConsumptionHeatmap({ data }: Props) {
     <div className="w-full">
       <div className="flex">
         <div className="w-10 shrink-0" />
-        <div className="grid flex-1 grid-cols-24 gap-[2px] text-[9px] text-muted-foreground">
+        <div className="grid flex-1 grid-cols-[repeat(24,minmax(0,1fr))] gap-[2px] text-[9px] text-muted-foreground">
           {Array.from({ length: 24 }, (_, h) => (
             <div key={h} className="text-center">{h % 3 === 0 ? h : ""}</div>
           ))}
@@ -31,7 +31,7 @@ export function ConsumptionHeatmap({ data }: Props) {
       {grid.map((row, d) => (
         <div key={d} className="mt-[2px] flex items-center">
           <div className="w-10 shrink-0 text-[10px] font-medium text-muted-foreground">{DAYS[d]}</div>
-          <div className="grid flex-1 grid-cols-24 gap-[2px]">
+          <div className="grid flex-1 grid-cols-[repeat(24,minmax(0,1fr))] gap-[2px]">
             {row.map((v, h) => {
               const intensity = v / max;
               return (
