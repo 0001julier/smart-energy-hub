@@ -128,6 +128,8 @@ function Dashboard() {
   const prev7 = kpiData.slice(-14, -7).reduce((a, b) => a + b.kwh, 0) / 7;
   const trendDelta = prev7 ? ((last7 - prev7) / prev7) * 100 : 0;
 
+  if (!session || session.role === "admin" || noMeters) return null;
+
   return (
     <SiteLayout>
       <div className="container mx-auto px-4 py-8">
