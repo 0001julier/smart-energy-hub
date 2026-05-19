@@ -35,7 +35,8 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
             {navLink("/", "Home")}
             {navLink("/about", "About")}
             {navLink("/features", "Features")}
-            {session && navLink("/dashboard", "Dashboard")}
+            {session && session.role !== "admin" && navLink("/dashboard", "Dashboard")}
+            {session && session.role !== "admin" && navLink("/meters", "Meters")}
             {session?.role === "admin" && navLink("/admin", "Admin")}
           </nav>
 
