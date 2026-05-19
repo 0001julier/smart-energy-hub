@@ -74,8 +74,7 @@ function Dashboard() {
   const userId = session?.userId ?? "u1";
   const notifications = useMemo(() => getNotifications(userId), [userId]);
 
-  if (!session || session.role === "admin") return null;
-  if (store.homes.length === 0 || store.meters.length === 0) return null;
+  const noMeters = store.homes.length === 0 || store.meters.length === 0;
 
   // Resolve per-card series
   const kpiData = useDaily(kpiScope, store.meters, 30);
